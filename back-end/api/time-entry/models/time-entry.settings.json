@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "time_entries",
+  "info": {
+    "name": "time-entry"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "projectId": {
+      "type": "string"
+    },
+    "storyId": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "hours": {
+      "type": "float"
+    }
+  }
+}
