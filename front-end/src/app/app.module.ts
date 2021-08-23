@@ -11,11 +11,13 @@ import { TimeEntryListComponent } from './presentation/time-entry-list/time-entr
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { TimeEntryState } from './presentation/time-entries.state';
+import { InfoBarComponent } from './presentation/info-bar/info-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
     TimeEntryEditComponent,
-    TimeEntryListComponent
+    TimeEntryListComponent,
+    InfoBarComponent
   ],
   imports: [
     BrowserModule,

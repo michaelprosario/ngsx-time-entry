@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { TimeEntry } from 'src/app/core/entities/time-entry';
-import { GetTimeEntryList } from '../actions';
+import { GetTimeEntryList, SetSelectedTimeEntry } from '../actions';
 import { TimeEntryState } from '../time-entries.state';
 
 @Component({
@@ -21,10 +21,7 @@ export class TimeEntryListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private store: Store
-  ) { 
-    
-
-  }
+  ) {}
 
   ngOnInit() {
 
@@ -35,7 +32,8 @@ export class TimeEntryListComponent implements OnInit {
     this.router.navigate(['/newTimeEntry/']);
   }
 
-  openRecord(recordId: number) {
-    this.router.navigate(['/editTimeEntry/' + recordId]);
+  openRecord(record: TimeEntry) {
+    this.store.dispatch(new SetSelectedTimeEntry(record));
+    this.router.navigate(['/editTimeEntry/' + record.id]);
   }
 }
