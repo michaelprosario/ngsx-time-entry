@@ -1,4 +1,8 @@
-<p>time-entry-edit works!</p>
+<h3>Edit Time Entry</h3>
 
+<form  >
+  <formly-form  [fields]="fields" [model]="record"></formly-form>
+  <button class="btn btn-default">Submit</button>
+</form>
 
 {{ record | json }}

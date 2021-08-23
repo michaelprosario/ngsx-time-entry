@@ -12,6 +12,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { TimeEntryState } from './presentation/time-entries.state';
 import { InfoBarComponent } from './presentation/info-bar/info-bar.component';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,10 @@ import { InfoBarComponent } from './presentation/info-bar/info-bar.component';
     NgxsLoggerPluginModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule    
+    AppRoutingModule,
+    FormlyModule.forRoot(),
+    FormlyBootstrapModule,
+    FormlyModule.forRoot({ extras: { lazyRender: true } })    
   ],
   providers: [],
   bootstrap: [AppComponent]
