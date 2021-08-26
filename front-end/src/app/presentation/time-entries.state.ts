@@ -67,6 +67,7 @@ export class TimeEntryState {
     @Action(AddTimeEntry)
     addTimeEntry({getState, patchState}: StateContext<TimeEntryStateModel>, {payload}: AddTimeEntry) {
         return this.timeEntryService.addTimeEntry(payload).pipe(tap((result) => {
+
             const state = getState();
             patchState({
                 timeEntries: [...state.timeEntries, result]

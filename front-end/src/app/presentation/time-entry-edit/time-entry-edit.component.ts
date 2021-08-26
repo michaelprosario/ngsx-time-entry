@@ -4,7 +4,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { TimeEntry } from 'src/app/core/entities/time-entry';
-import { GetTimeEntry, NewTimeEntry } from '../actions';
+import { AddTimeEntry, GetTimeEntry, NewTimeEntry } from '../actions';
 import { InfoBarComponent } from '../info-bar/info-bar.component';
 import { TimeEntryState } from '../time-entries.state';
 
@@ -127,8 +127,39 @@ export class TimeEntryEditComponent implements OnInit {
   }
 
   onSave(){
-    alert('handle save data');
+        
+    if(this.formIsOkay())    
+    {
+      // execute save operation
+      this.store.dispatch(new AddTimeEntry(this.record)).subscribe(() => 
+      {          
+        // navigate back to list screen      
+        this.router.navigate(['/listTimeEntries']);        
+      })
+    }
+  }
+
+  formIsOkay() : boolean {
+    if(this.record.projectId.length === 0){
+      alert('project id is required');
+      return false;
+    }
+
+    if(this.record.storyId.length === 0){
+      alert('story id is required');
+      return false;
+    }
+
+    if(this.record.hours === 0){
+      alert('hours is required');
+      return false;
+    }    
+    
+    return true;
   }
 
 
 }
+
+
+
