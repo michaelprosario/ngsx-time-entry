@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { TimeEntry } from 'src/app/core/entities/time-entry';
+import { GetTimeEntry, NewTimeEntry } from '../actions';
 import { InfoBarComponent } from '../info-bar/info-bar.component';
 import { TimeEntryState } from '../time-entries.state';
 
@@ -64,7 +65,7 @@ export class TimeEntryEditComponent implements OnInit {
         label: 'notes',
         placeholder: 'Enter notes ',
         required: false,
-        rows:10
+        rows:3
       }
     }    
 
@@ -72,7 +73,8 @@ export class TimeEntryEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {
     this.editingNewRecord = false;
     this.errors = [];
@@ -111,14 +113,21 @@ export class TimeEntryEditComponent implements OnInit {
       // @ts-ignore
       setTimeout(x => this.infoBar.displayInfo("Add new TimeEntry"), 1000);
     }
+    this.store.dispatch(new NewTimeEntry());
     this.viewModelReady = true;
   }
 
   loadRecord() {
     this.editingNewRecord = false;
+    this.store.dispatch(new GetTimeEntry(this.recordId));
     this.selectedRecord.subscribe(data => {
       this.record = data;
+      this.recordId = this.record.id;
     })
+  }
+
+  onSave(){
+    alert('handle save data');
   }
 
 

@@ -30,4 +30,8 @@ export class TimeEntryService {
     updateTimeEntry(payload: TimeEntry, id: number) {
         return this.http.put<TimeEntry>(`${this.baseUrl}/${this.entity}/${id}`, payload);
     }
+
+    getTimeEntry(id: number) {
+        return this.http.get(`${this.baseUrl}/${this.entity}/${id}`);
+    }
 }

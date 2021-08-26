@@ -6,3 +6,4 @@ https://www.daptontechnologies.com/angular-ngxs-crud/
 time log
 1 - key classes from blog post
 1.5 - got list view working
+1.5 - formly form 1!!

@@ -29,7 +29,7 @@ export class TimeEntryListComponent implements OnInit {
   }
 
   onNewRecord() {
-    this.router.navigate(['/newTimeEntry/']);
+    this.router.navigate(['/newTimeEntry']);
   }
 
   openRecord(record: TimeEntry) {

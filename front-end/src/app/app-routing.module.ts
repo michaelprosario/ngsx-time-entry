@@ -6,7 +6,7 @@ import { TimeEntryListComponent } from './presentation/time-entry-list/time-entr
 const routes: Routes = [
   { path: 'editTimeEntry/:id', component: TimeEntryEditComponent },
   { path: 'listTimeEntries', component: TimeEntryListComponent },
-  { path: 'newTimeEntry/:id', component: TimeEntryEditComponent },    
+  { path: 'newTimeEntry', component: TimeEntryEditComponent },    
 ];
 
 @NgModule({

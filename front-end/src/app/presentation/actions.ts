@@ -8,7 +8,7 @@ export class AddTimeEntry {
 }
 
 export class GetTimeEntryList {
-    static readonly type = '[TimeEntry] Get';
+    static readonly type = '[TimeEntry] List';
 }
 
 export class UpdateTimeEntry {
@@ -30,4 +30,15 @@ export class SetSelectedTimeEntry {
 
     constructor(public payload: TimeEntry) {
     }
+}
+
+export class GetTimeEntry {
+    static readonly type = '[TimeEntry] Get Time Entry';
+    constructor(public recordId: number) {
+    }    
+}
+
+export class NewTimeEntry {
+    static readonly type = '[TimeEntry] New Time Entry';
+    constructor() {}    
 }

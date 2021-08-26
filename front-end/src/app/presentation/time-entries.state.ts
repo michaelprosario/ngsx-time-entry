@@ -1,9 +1,10 @@
+import { Time } from '@angular/common';
 import { Injectable } from '@angular/core';
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {tap} from 'rxjs/operators';
 import { TimeEntry } from '../core/entities/time-entry';
 import { TimeEntryService } from '../core/services/time-entry-service';
-import { AddTimeEntry, DeleteTimeEntry, GetTimeEntryList, SetSelectedTimeEntry, UpdateTimeEntry } from './actions';
+import { AddTimeEntry, DeleteTimeEntry, GetTimeEntry, GetTimeEntryList, NewTimeEntry, SetSelectedTimeEntry, UpdateTimeEntry } from './actions';
 
 export class TimeEntryStateModel {
     timeEntries: TimeEntry[];
@@ -46,6 +47,22 @@ export class TimeEntryState {
             setState({...state,timeEntries: result});
         }));
     }
+
+    @Action(GetTimeEntry)
+    getTimeEntryFromServer({getState, setState}: StateContext<TimeEntryStateModel>, {recordId} : GetTimeEntry) {
+        return this.timeEntryService.getTimeEntry(recordId).pipe(tap((result) => {
+            const state = getState();            
+            const record = result as unknown as TimeEntry;
+            setState({...state,selectedTimeEntry: record});
+        }));
+    }    
+
+    @Action(NewTimeEntry)
+    newTimeEntry({getState, setState}: StateContext<TimeEntryStateModel>) {       
+        const state = getState();            
+        const record = new TimeEntry();
+        setState({...state,selectedTimeEntry: record});        
+    }       
 
     @Action(AddTimeEntry)
     addTimeEntry({getState, patchState}: StateContext<TimeEntryStateModel>, {payload}: AddTimeEntry) {

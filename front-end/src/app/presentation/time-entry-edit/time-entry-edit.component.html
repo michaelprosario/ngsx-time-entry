@@ -2,7 +2,7 @@
 
 <form  >
   <formly-form  [fields]="fields" [model]="record"></formly-form>
-  <button class="btn btn-default">Submit</button>
+  <button class="btn btn-default" (click)="onSave()">Save</button>
 </form>
 
 {{ record | json }}
